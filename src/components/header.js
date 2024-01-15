@@ -4,7 +4,17 @@ import {
     StatusIcon,
     NewChatIcon,
 } from '../assets/icons';
-import {Avatar, Flex, HStack, IconButton, Tooltip} from "@chakra-ui/react";
+import {
+    Avatar,
+    Flex,
+    HStack,
+    IconButton,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Tooltip
+} from "@chakra-ui/react";
 
 const iconsData = [
     { icon: <CommunityIcon />, label: 'Community chat' },
@@ -16,7 +26,7 @@ const iconsData = [
 function CustomToolTip({ icon, label }) {
     return (
         <Tooltip label={label} placement="bottom">
-            <IconButton variant='ghost'>{icon}</IconButton>
+            <IconButton variant='ghost' aria-label={label}>{icon}</IconButton>
         </Tooltip>
         );
 }
@@ -38,7 +48,20 @@ export function Header(props) {
             />
             <HStack>
                 {iconsData.map((item, index) => (
-                    <CustomToolTip key={index} icon={item.icon} label={item.label} />
+                    (item.label === 'Menu') ?
+                        <Menu>
+                            <MenuButton
+                                as={IconButton}
+                                icon={<CustomToolTip icon={item.icon} label={item.label}/>}
+                            />
+                            <MenuList>
+                                <MenuItem>New Chat</MenuItem>
+                                <MenuItem>New Group</MenuItem>
+                                <MenuItem>Settings</MenuItem>
+                            </MenuList>
+                        </Menu>
+                    :
+                        <CustomToolTip key={index} icon={item.icon} label={item.label}/>
                 ))}
             </HStack>
         </Flex>

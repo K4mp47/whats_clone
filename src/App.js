@@ -1,11 +1,14 @@
 import './App.css';
 import {LeftPanel} from "./components/left-panel";
+import {RightPanel} from "./components/right-panel";
+import {Flex} from "@chakra-ui/react";
 
 function App() {
   return (
-    <div className="App">
+    <Flex className="App">
         <LeftPanel />
-    </div>
+        <RightPanel />
+    </Flex>
   );
 }
 

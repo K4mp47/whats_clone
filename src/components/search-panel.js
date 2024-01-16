@@ -5,6 +5,7 @@ import {
 } from "../assets/icons";
 import {HStack, IconButton, Input, InputGroup, InputLeftElement, Tooltip} from "@chakra-ui/react";
 import React from "react";
+import {ArrowBackIcon} from "@chakra-ui/icons";
 
 export function SearchPanel(props) {
 
@@ -21,13 +22,15 @@ export function SearchPanel(props) {
             justify='space-between'
             borderBottom='1px solid #e2e8f0'
             {...props}
+            bg='#ffffff'
         >
             <InputGroup
                 color='#54656f'
                 bg='#f0f2f5'
                 borderRadius='full'
+                py='auto'
             >
-                <InputLeftElement cursor='pointer' children={<SearchIcon color='gray.300'/>} />
+                <InputLeftElement display='flex' alignItems='center' cursor='pointer' children={ isFocused? <ArrowBackIcon color='#42CBA5' /> : <SearchIcon color='gray.300'/>} />
                 <Input
                     paddingLeft='50px'
                     placeholder={isFocused? '' : 'Search or start new chat'}

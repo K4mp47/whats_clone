@@ -4,6 +4,7 @@ import {
     StatusIcon,
     NewChatIcon,
 } from '../assets/icons';
+
 import {
     Avatar,
     Flex,
@@ -13,8 +14,11 @@ import {
     MenuButton,
     MenuItem,
     MenuList,
+    Spinner,
     Tooltip
 } from "@chakra-ui/react";
+
+import React from 'react';
 
 const iconsData = [
     { icon: <CommunityIcon />, label: 'Community chat' },
@@ -32,6 +36,13 @@ function CustomToolTip({ icon, label }) {
 }
 
 export function Header(props) {
+
+    const [color, setColor] = React.useState(false);
+
+    const changeColor = () => {
+        setColor(!color);
+    }
+
     return (
         <Flex
             justifyContent='space-between'
@@ -58,6 +69,15 @@ export function Header(props) {
                                 <MenuItem>New Chat</MenuItem>
                                 <MenuItem>New Group</MenuItem>
                                 <MenuItem>Settings</MenuItem>
+                                <MenuItem onClick={changeColor} color={color?'#42CBA5':'#54656f'}>Change Theme</MenuItem>
+                                <MenuItem>
+                                    <Spinner
+                                        color='#54656f'
+                                        emptyColor='#f0f2f5'
+                                        size='sm'
+                                        speed='0.65s'
+                                    />
+                                </MenuItem>
                             </MenuList>
                         </Menu>
                     :
